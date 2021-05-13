@@ -14,5 +14,9 @@
 String nome = "Nome recebido " + request.getParameter("nome");	
 
 out.print(nome);%>
+
+<!--Exemplos abaixo de como utilizar os objetos implicitos-->
+<!-- String nome = "Nome recebido " + request.getParameter("nome"); -->
+<%-- <% response.sendRedirect("https://github.com/edmarsantos") %>> --%>
 </body>
 </html>

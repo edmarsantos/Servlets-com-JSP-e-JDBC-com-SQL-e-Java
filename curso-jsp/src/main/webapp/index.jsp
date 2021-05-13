@@ -14,6 +14,23 @@
 <input type="text"  id="nome" name="nome">
 <input type="submit" value="enviar"></input>
 
+
+<!-- tag declarativa -->
+<%! int cont = 2; 
+
+/* tag declarativa permite tambem escrever metodos */
+public int  retorna(int n){
+	return n * 3;
+}
+%>
+
+<!-- tag de Expressão -->
+<br/>
+<%= cont %>
+<br/>
+<%= retorna(10) %>
+<br/>
+<%= application.getInitParameter("estado") %>
 </form>
 
 </body>
