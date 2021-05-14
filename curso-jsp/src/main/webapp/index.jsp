@@ -13,7 +13,19 @@
 <form action="receber-nome.jsp">
 <input type="text"  id="nome" name="nome">
 <input type="submit" value="enviar"></input>
+<br/>
+<br/>
+<!-- Declarando a Directiva -->
+<%@ page import="java.util.Date" %>
 
+<!-- utilizando a Direciva -->
+<%= "Data Hoje é " + new Date() %>
+
+<%@ page errorPage="receber-nome.jsp" %>
+<%= 100/2 %>
+
+<!--Declarando a Session -->
+<%session.setAttribute("curso", "curso de Jsp"); %>
 
 <!-- tag declarativa -->
 <%! int cont = 2; 

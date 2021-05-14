@@ -7,7 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- Pegando objeto da session -->
+<%=session.getAttribute("curso")%>
 
+<!-- outro exemplo de Directiva para redirecionar erros -->
+<%@ page isErrorPage="true" %>
+
+<!-- utilizando a Direciva  para redirecionar em caso de erro -->
+<%= exception %>
 
 
 <% 
