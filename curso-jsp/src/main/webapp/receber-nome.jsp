@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>receber nome</title>
 </head>
 <body>
+
+<%= request.getParameter("paramforward") %>
+
 <!-- Pegando objeto da session -->
 <%=session.getAttribute("curso")%>
 

@@ -7,11 +7,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>index</title>
 </head>
 <body>
 <h1>Bem Vindo ao Curso de JSP</h1>
 <% out.print("Sucesso Garantido"); %>
+<%-- <jsp:forward page="receber-nome.jsp">
+<jsp:param  value="curso de Jsp site Java avançada.com " name="paramforward"/>
+</jsp:forward> --%>
+
+<jsp:include page="cabecalho.jsp"></jsp:include>
 
 <form action="receber-nome.jsp">
 <input type="text"  id="nome" name="nome">
@@ -49,12 +54,12 @@ public int  retorna(int n){
 
 
 <%@ include file="pagina_Include.jsp" %>
-  <myprefix:minhatag/>
+<%--   <myprefix:minhatag/> --%>
 
 
 </form>
 
-
+<jsp:include page="rodape.jsp"/>
 
 
 </body>
