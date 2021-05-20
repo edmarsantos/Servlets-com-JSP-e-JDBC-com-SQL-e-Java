@@ -1,3 +1,5 @@
+<jsp:useBean id="calcula" class="beans.BeanCursoJsp" type="beans.BeanCursoJsp"/>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -55,6 +57,8 @@ public int  retorna(int n){
 
 <%@ include file="pagina_Include.jsp" %>
 <%--   <myprefix:minhatag/> --%>
+
+<%= calcula.calcula(50) %>
 
 
 </form>
