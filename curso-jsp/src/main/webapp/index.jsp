@@ -1,4 +1,4 @@
-<jsp:useBean id="calcula" class="beans.BeanCursoJsp" type="beans.BeanCursoJsp"/>
+<jsp:useBean id="calcula" class="beans.BeanCursoJsp" type="beans.BeanCursoJsp" scope="page"/>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -14,52 +14,18 @@
 <body>
 <h1>Bem Vindo ao Curso de JSP</h1>
 <% out.print("Sucesso Garantido"); %>
-<%-- <jsp:forward page="receber-nome.jsp">
-<jsp:param  value="curso de Jsp site Java avançada.com " name="paramforward"/>
-</jsp:forward> --%>
 
-<jsp:include page="cabecalho.jsp"></jsp:include>
+<jsp:setProperty property="*" name="calcula"/>
 
-<form action="receber-nome.jsp">
-<input type="text"  id="nome" name="nome">
-<input type="submit" value="enviar"></input>
-<br/>
-<br/>
-<!-- Declarando a Directiva -->
-<%@ page import="java.util.Date" %>
+<form action ="cabecalho.jsp" method="post">	
+	
+<input type="text" id="nome" name="nome" value="alex">
 
-<!-- utilizando a Direciva -->
-<%= "Data Hoje é " + new Date() %>
+<input type="text" id="ano" name="ano" value="53">
 
-<%@ page errorPage="receber-nome.jsp" %>
-<%= 100/2 %>
+<input type="text" id="sexo" name="sexo" value="masculino">
 
-<!--Declarando a Session -->
-<%session.setAttribute("curso", "curso de Jsp"); %>
-
-<!-- tag declarativa -->
-<%! int cont = 2; 
-
-/* tag declarativa permite tambem escrever metodos */
-public int  retorna(int n){
-	return n * 3;
-}
-%>
-
-<!-- tag de Expressão -->
-<br/>
-<%= cont %>
-<br/>
-<%= retorna(10) %>
-<br/>
-<%= application.getInitParameter("estado") %>
-
-
-<%@ include file="pagina_Include.jsp" %>
-<%--   <myprefix:minhatag/> --%>
-
-<%= calcula.calcula(50) %>
-
+<input type="submit" value="teste"/>
 
 </form>
 
