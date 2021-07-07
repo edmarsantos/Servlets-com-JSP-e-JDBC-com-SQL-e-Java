@@ -48,6 +48,7 @@ public class DaoUsuario {
 		ResultSet resultSet =statement.executeQuery();
 		while(resultSet.next() ) {
 		BeanCursoJsp beanCursoJsp = new BeanCursoJsp();
+		beanCursoJsp.setId(resultSet.getLong("id"));
 		beanCursoJsp.setLogin(resultSet.getString("login"));
 		beanCursoJsp.setSenha(resultSet.getString("senha"));
 		
@@ -78,4 +79,48 @@ public class DaoUsuario {
 		}
 	}
 
+	public BeanCursoJsp cosultar(String login) throws Exception {
+		
+		String sql = "select * from usuario where login='" + login +"' ";
+		
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		
+		if(resultSet.next()) {
+			BeanCursoJsp beanCursoJsp = new BeanCursoJsp();
+			beanCursoJsp.setId(resultSet.getLong("id"));
+			beanCursoJsp.setLogin(resultSet.getString("login"));
+			beanCursoJsp.setSenha(resultSet.getString("senha"));
+		
+		return beanCursoJsp;
+		}
+		
+		
+		
+		return null;
+	}
+
+	public void atualizar (BeanCursoJsp usuario) throws SQLException {
+		
+		try {
+			
+		String sql = "UPDATE USUARIO SET LOGIN = ? ,SENHA =? WHERE ID =" + usuario.getId() ;
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, usuario.getLogin());
+		preparedStatement.setString(2, usuario.getSenha());
+		preparedStatement.execute();
+		connection.commit();
+		}catch (Exception e){
+			e.printStackTrace();
+			
+			try {
+				connection.rollback();	
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}	
+		
+	}
+	
 }
