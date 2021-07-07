@@ -5,19 +5,23 @@ public class BeanCursoJsp {
 	
 	private String login;
 	private String senha;
+	private long id;
 	
 	
-	public boolean validarLoginSenha(String login , String senha) {
-		if(login.equalsIgnoreCase("edmar") && senha.equalsIgnoreCase("2606")) {
-			return true;
-		}else
-		{
-			return false;
-		}	
+	/*
+	 * public boolean validarLoginSenha(String login , String senha) {
+	 * if(login.equalsIgnoreCase("edmar") && senha.equalsIgnoreCase("2606")) {
+	 * return true; }else { return false; } }
+	 */
+	
+	
+	
+	public long getId() {
+		return id;
 	}
-	
-	
-	
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getLogin() {
 		return login;
 	}
