@@ -1,5 +1,4 @@
 package filter;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -50,7 +49,7 @@ try {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		
-		SingleConnection.getConnection();
+		connection = SingleConnection.getConnection();
 		
 	}
 	

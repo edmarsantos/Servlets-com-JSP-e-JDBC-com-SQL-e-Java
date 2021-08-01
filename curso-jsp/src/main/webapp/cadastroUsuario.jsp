@@ -9,10 +9,14 @@
 <title>Cadastro Usuario</title>
 </head>
 <body>
-<center><h1>Cadastro de usuario</h1></center>
-<link rel="stylesheet" type="text/css" href="resources/css/cadastro.css">
+<center>
+<h1>Cadastro de usuario</h1>
+<h3 style="color:red;">${msg}</h3>
+</center>
 
-<form action="salvarUsuario" method="Post">
+<link rel="stylesheet" type="text/css" href="resources/css/cadastro.css">
+	
+<form action="salvarUsuario" method="Post" id="formUser">
 <ul class="form-style-1">
 <li>
 <table>
@@ -34,8 +38,15 @@
 <td>Nome:</td>
 <td><input type="text" id="nome" name="nome" value="${user.nome }"></td>
 </tr>
+<tr>
+     <td></td>
+     <td>
+     <input type="submit" value="Salvar">
+     <input type="submit" value="Cancelar" onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'">
+     </td>
+</tr>
 </table>
-<center><input type="submit" value="Salvar"></center>
+
 </li>
 </ul>
 </form>
@@ -49,6 +60,7 @@
     <th>Nome</th>
     <th>Delete</th>
     <th>Editar</th>
+    
 </tr>
 
 <c:forEach  items="${usuarios}" var="user" >
@@ -56,8 +68,10 @@
 <td style="with:150px"><c:out value="${user.id}"></c:out></td>
 <td style="with:150px"><c:out value="${user.login}"></c:out></td>
 <td><c:out value="${user.nome}"></c:out></td>
-<td><a href="salvarUsuario?acao=delete&user=${user.login }"><img src="resources/img/delete.png" with="20px" height="20px" alt="excluir" title="excluir"></a></td>
-<td><a href="salvarUsuario?acao=editar&user=${user.login }"><img src="resources/img/editar.png" with="20px" height="20px"></a></td>
+<td><a href="salvarUsuario?acao=delete&user=${user.id }"><img src="resources/img/deletar.png" with="20px" height="20px" alt="excluir" title="excluir"></a></td>
+<td><a href="salvarUsuario?acao=editar&user=${user.id }"><img src="resources/img/editar.png" with="20px" height="20px" alt="Editar" title="Editar"></a></td>
+
+
 </tr>
 </c:forEach>
 

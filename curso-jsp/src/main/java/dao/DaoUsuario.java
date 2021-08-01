@@ -16,16 +16,16 @@ public class DaoUsuario {
 	
 	public DaoUsuario() {
 		connection = SingleConnection.getConnection();
-		
 	}
 	
 	public void salvar(BeanCursoJsp usuario)   {
 		
 		try {
-			String sql = "insert into usuario(login,senha) values(? , ?) ";
+			String sql = "insert into usuario(login,senha,nome) values(?,?,?) ";
 			PreparedStatement insert = connection.prepareStatement(sql);
 	        insert.setString(1, usuario.getLogin());
 	        insert.setString(2, usuario.getSenha());
+	        insert.setString(3, usuario.getNome());
 	        insert.execute();
 	        connection.commit();
 	        
@@ -51,6 +51,7 @@ public class DaoUsuario {
 		beanCursoJsp.setId(resultSet.getLong("id"));
 		beanCursoJsp.setLogin(resultSet.getString("login"));
 		beanCursoJsp.setSenha(resultSet.getString("senha"));
+		beanCursoJsp.setNome(resultSet.getString("nome"));
 		
 		listar.add(beanCursoJsp);
 		
@@ -59,10 +60,10 @@ public class DaoUsuario {
 		
 	}
 	
-	public void delete(String login) {
+	public void delete(String id) {
 		
 		try {
-		String sql ="delete from usuario where login = '" + login + "' ";
+		String sql ="delete from usuario where id = '" + id + "' ";
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		preparedStatement.execute();
 		connection.commit();
@@ -79,9 +80,9 @@ public class DaoUsuario {
 		}
 	}
 
-	public BeanCursoJsp cosultar(String login) throws Exception {
+	public BeanCursoJsp cosultar(String id) throws Exception {
 		
-		String sql = "select * from usuario where login='" + login +"' ";
+		String sql = "select * from usuario where id='" + id +"' ";
 		
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		ResultSet resultSet = preparedStatement.executeQuery();
@@ -91,23 +92,49 @@ public class DaoUsuario {
 			beanCursoJsp.setId(resultSet.getLong("id"));
 			beanCursoJsp.setLogin(resultSet.getString("login"));
 			beanCursoJsp.setSenha(resultSet.getString("senha"));
+			beanCursoJsp.setNome(resultSet.getString("nome"));
 		
 		return beanCursoJsp;
 		}
-		
-		
-		
 		return null;
 	}
+	
+public boolean validarLogin(String login) throws Exception {
+		
+		String sql = "select count(1) as qtd from usuario where login='" + login +"' ";
+		
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if(resultSet.next()) {
+		
+			return resultSet.getInt("qtd") <=0; //returna verdadeiro
+		}
+		return false;
+	}
+
+public boolean ValidarLoginUpdate(String login,String id) throws Exception {
+	
+	String sql = "select count(1) as qtd from usuario where login='" + login +"' and id <> " + id;
+	PreparedStatement preparedStatement = connection.prepareStatement(sql);
+	ResultSet resultSet = preparedStatement.executeQuery();
+	if(resultSet.next()) {
+	
+		return resultSet.getInt("qtd") <=0; //returna verdadeiro
+	}
+	return false;
+}
+
+
 
 	public void atualizar (BeanCursoJsp usuario) throws SQLException {
 		
 		try {
 			
-		String sql = "UPDATE USUARIO SET LOGIN = ? ,SENHA =? WHERE ID =" + usuario.getId() ;
+		String sql = "UPDATE USUARIO SET LOGIN = ? ,SENHA =?, nome=? WHERE ID =" + usuario.getId() ;
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		preparedStatement.setString(1, usuario.getLogin());
 		preparedStatement.setString(2, usuario.getSenha());
+		preparedStatement.setString(3, usuario.getNome());
 		preparedStatement.execute();
 		connection.commit();
 		}catch (Exception e){
@@ -121,6 +148,18 @@ public class DaoUsuario {
 			}
 		}	
 		
+	}
+	
+	public boolean validarSenha(String senha) throws Exception {
+		String sql = "select count(1) as qtd from usuario where senha='" + senha + "'";
+
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+			
+			return resultSet.getInt("qtd") <= 0;/*Return true*/
+		}
+		return false;
 	}
 	
 }

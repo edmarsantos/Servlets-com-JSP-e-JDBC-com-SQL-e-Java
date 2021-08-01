@@ -6,8 +6,7 @@ public class BeanCursoJsp {
 	private String login;
 	private String senha;
 	private long id;
-	
-	
+	private String nome;
 	/*
 	 * public boolean validarLoginSenha(String login , String senha) {
 	 * if(login.equalsIgnoreCase("edmar") && senha.equalsIgnoreCase("2606")) {
@@ -34,17 +33,6 @@ public class BeanCursoJsp {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-
-
-	private String nome;
-	
-	private String ano;
-	
-	private String sexo;
-	
-	
-	
 	public String getNome() {
 		return nome;
 	}
@@ -56,25 +44,20 @@ public class BeanCursoJsp {
 	}
 
 
-
+	
+	
+	private String ano;
+	private String sexo;
+	
 	public void setAno(String ano) {
 		this.ano = ano;
 	}
-
-
-
 	public String getSexo() {
 		return sexo;
 	}
-
-
-
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-
-
-
 	public int calcula(int numero ) {
 		return numero  * 100;
 	}
