@@ -16,7 +16,8 @@
 
 <link rel="stylesheet" type="text/css" href="resources/css/cadastro.css">
 	
-<form action="salvarUsuario" method="Post" id="formUser">
+<form action="salvarUsuario" method="Post" id="formUser"
+      onsubmit="return validarCampos() ? true : false;">
 <ul class="form-style-1">
 <li>
 <table>
@@ -77,6 +78,23 @@
 
 </table>
 </div>
+<script type="text/javascript">
+		function validarCampos() {
+			if (document.getElementById("login").value == '') {
+				alert('Informe o Login');
+				return false;
+			} else if (document.getElementById("senha").value == '') {
+				alert('Informe o Senha');
+				return false;
+			} else if (document.getElementById("nome").value == '') {
+				alert('Informe o Nome');
+				return false;
+			} 
+			
+			return true;
+		}
+	</script>
+
 
 
 </body>

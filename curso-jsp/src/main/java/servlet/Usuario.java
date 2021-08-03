@@ -88,7 +88,7 @@ public class Usuario extends HttpServlet {
 			BeanCursoJsp usuario = new BeanCursoJsp();
 
 			// para pegar o campo vazio !id.isEmpty()? Long.parseLong(id) : 0
-			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : null);
+			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
 			
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
